@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="glass-container">
+        <input id="city" class="search-bar" type="text" placeholder="Enter city name" value="surat">
+        <input type="submit" class="search-bar" onclick="getWeather()">
+    </div>
+    <div class=" banner ">
+        <div class=" banner-img ">
+            <div class=" display-flex justify-content">
+                <div>
+                    <h1 id="title" style="color: white; position: absolute; top: 30px; left: 10px;">Surat</h3>
+                </div>
+                <div>
+                    <img src="location.png" height="70px" width="70px"
+                        style="position: absolute; top: 10px; right: 10px; ">
+                    <p id="title_1"
+                        style="font-size: 14px; color: white; position: absolute; top: 80px; right: 17px; text-align: center;">
+                        Surat
+                        <br>
+                        <span id="time">20:15
+                            pm</span>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        <div class="info display-flex align-center ">
+            <div class="w-20" style="text-align: center;">
+                <h1 id="temprature" style="color: white; font-size: 50px; text-align: center;">83 °</h1>
+                <span style="font-size: 20px; color: white; text-align: center; border-radius: 10px;"
+                    id="current">Monday</span>
+            </div>
+            <div class="w-20" style="border-right: 1px solid rgb(100, 100, 100,0.8); text-align: center;">
+                <img id="img" src="rain.png" height="80px" width="80px" />
+                <br>
+                <span style="color: white; font-size: 14px;">4mph / 83 °</span>
+            </div>
+            <div class="w-10"
+                style="border-right: 1px solid rgb(100, 100, 100,0.8); padding: 0 10px ; text-align: center;">
+                <p id="day-row"
+                    style="font-size: 12px; color: white; text-align: center; border-radius: 10px; background-color: rgba(0,0,0,0.3); padding: 2px 0;">
+                    Tuesday</p>
+                <img id="img" src="sun.png" height="30px" width="30px" style="margin: 10px 0;">
+                <br>
+                <span style="color: white; font-size: 14px;" id="day">83 °</span>
+            </div>
+            <div class="w-10"
+                style="border-right: 1px solid rgb(100, 100, 100,0.8); padding: 0 10px ; text-align: center;">
+                <p id="day-row"
+                    style="font-size: 12px; color: white; text-align: center; border-radius: 10px; background-color: rgba(0,0,0,0.3); padding: 2px 0;">
+                    Wednesday</p>
+                <img id="img" src="sun.png" height="30px" width="30px" style="margin: 10px 0;">
+                <br>
+                <span style="color: white; font-size: 14px;" id="day">83 °</span>
+            </div>
+            <div class="w-10"
+                style="border-right: 1px solid rgb(100, 100, 100,0.8); padding: 0 10px ; text-align: center;">
+                <p id="day-row"
+                    style="font-size: 12px; color: white; text-align: center; border-radius: 10px; background-color: rgba(0,0,0,0.3); padding: 2px 0;">
+                    Thursday</p>
+                <img id="img" src="sun.png" height="30px" width="30px" style="margin: 10px 0;">
+                <br>
+                <span style="color: white; font-size: 14px;" id="day">83 °</span>
+            </div>
+            <div class="w-10"
+                style="border-right: 1px solid rgb(100, 100, 100,0.8); padding: 0 10px ; text-align: center;">
+                <p id="day-row"
+                    style="font-size: 12px; color: white; text-align: center; border-radius: 10px; background-color: rgba(0,0,0,0.3); padding: 2px 0;">
+                    Friday</p>
+                <img id="img" src="sun.png" height="30px" width="30px" style="margin: 10px 0;">
+                <br>
+                <span style="color: white; font-size: 14px;" id="day">83 °</span>
+            </div>
+            <div class="w-10"
+                style="border-right: 1px solid rgb(100, 100, 100,0.8); padding: 0 10px ; text-align: center;">
+                <p id="day-row"
+                    style="font-size: 12px; color: white; text-align: center; border-radius: 10px; background-color: rgba(0,0,0,0.3); padding: 2px 0;">
+                    Saturday</p>
+                <img id="img" src="sun.png" height="30px" width="30px" style="margin: 10px 0;">
+                <br>
+                <span style="color: white; font-size: 14px;" id="day">83 °</span>
+            </div>
+            <div class="w-10"
+                style="border-right: 1px solid rgb(100, 100, 100,0.8); padding: 0 10px ; text-align: center;">
+                <p id="day-row"
+                    style="font-size: 12px; color: white; text-align: center; border-radius: 10px; background-color: rgba(0,0,0,0.3); padding: 2px 0;">
+                    Sunday</p>
+                <img id="img" src="sun.png" height="30px" width="30px" style="margin: 10px 0;">
+                <br>
+                <span style="color: white; font-size: 14px;" id="day">83 °</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+
+    document.addEventListener("keypress", (e) => {
+        if (e.key == "Enter") {
+            getWeather();
+        }
+    });
+
+    window.addEventListener('load', () => {
+        getWeather();
+    });
+
+    function getWeather() {
+        var currentDate = new Date();
+        let d = currentDate.getDay();
+        var currentHours = currentDate.getHours();
+        var currentMinutes = currentDate.getMinutes();
+        var currentSeconds = currentDate.getSeconds();
+        var currentTime = `${currentHours}:${currentMinutes}:${currentSeconds}`;
+        var city = document.getElementById("city").value;
+        var temprature = document.getElementById("temprature");
+        var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        var presentDay = daysOfWeek[currentDate.getDay()];
+        document.getElementById('current').innerHTML = presentDay;
+
+        printNext7Days();
+        function printNext7Days() {
+            const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const today = new Date();
+            const daysRow = document.querySelectorAll('#day-row');
+            // console.log(daysRow[0].innerHTML);
+
+            let otherDays = []
+            for (let i = 0; i <= 6; i++) {
+                const nextDay = new Date(today);
+                nextDay.setDate(today.getDate() + i);
+
+                otherDays.push(daysOfWeek[nextDay.getDay()])
+            }
+            otherDays.shift();
+
+            for (let j = 0; j < 6; j++) {
+                daysRow[j].innerHTML = otherDays[j];
+
+            }
+            console.log(otherDays);
+        }
+
+        var weatherIcons = {
+            "01d": "sun.png",    // Clear sky (day
+            "02d": "cloud.png",  // Few clouds (day)
+            "10d": "rain.png",   // Rain (day)
+        };
+
+        $.ajax({
+            url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=c15e7b8cd33d29ea6bf85c0718444a84&units=metric`,
+            method: 'get',
+            success: (res) => {
+                // console.log(res);
+                title.innerHTML = res.name;
+                title_1.innerHTML = `${res.name} <br/><span>${currentTime}</span>`;
+
+                // console.log(currentTime);
+                // document.getElementById('time')  .innerHTML;
+                temprature.innerHTML = res.main.temp + "°";
+                var weatherIconCode = res.weather[0].icon;
+                // console.log(weatherIconCode);
+                var weatherIcon = weatherIcons[weatherIconCode];
+                // console.log(weatherIcon);
+            }
+
+        });
+
+        $.ajax({
+            url: `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=c15e7b8cd33d29ea6bf85c0718444a84&units=metric`,
+            method: "get",
+            success: (ress) => {
+                // console.log(ress);
+                let dayArr = document.querySelectorAll('#day')
+                let img = document.querySelectorAll('#img');
+                for (var i = 0; i < img.length; i++) {
+                    let temp = ress.list[i].main.temp;
+                    if (temp > 20) {
+                        img[i].src = 'cloud.png'
+                    }
+                    else if (temp > 25) {
+                        img[i].src = 'sun.png'
+                    }
+                    else if (temp < 20) {
+                        img[i].src = 'rain.png'
+                    }
+                    dayArr[i].innerHTML = temp;
+                }
+            }
+        });
+    }
+
+
+</script>
